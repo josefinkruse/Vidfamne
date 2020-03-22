@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- Side navigation -->
+    <a href="#">
+        <div class="add_button">
+            <div class="header1">Add album</div>
+            <div class="header2">+</div>
+        </div>
+    </a>
+
+    <!-- Page content -->
+    <div class="main">
+        <h1>Folders</h1>
+        <div class="row_folder">
+            {% for folder in folders %}
+            <div class="column_folder1">
+                <div class="crop">
+                    <a href="{{ url_for('folder', folder_id=folder.id) }}">
+                        <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}">
+                        <div class="content">
+                          <h0>Heading</h0>
+                          <p>Lorem ipsum..</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+<!-- Page content
+        <div class="row_folder">
+            {% for folder in folders %}
+              <a href="{{ url_for('folder', folder_id=folder.id) }}">
+                <div class="column_folder">
+                    <div class="container">
+                        <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}">
+                        <div class="content">
+                          <h1>Heading</h1>
+                          <p>Lorem ipsum..</p>
+                        </div>
+                    </div>
+                </div>
+              </a>
+            {% endfor %}
+        </div> -->
+          <!--
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                {% for picture in pictures %}
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}"
+                             class="d-block w-100" alt="Lights">
+                    </div>
+                {% endfor %}
+            </div>
+        </div> --><!--
+        <div class="row_folder">
+            {% for folder in folders %}
+              <div class="column_folder">
+                  <p id="rcorners1">Rounded corners!</p>
+                <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}">
+              </div>
+            {% endfor %}
+        </div>
+        <div class="row_folder">
+            {% for folder in folders %}
+                <div class="column_folder">
+                    <article class="media content-section">
+                      <div class="media-body">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="#">{{ folder.title }}</a>
+                          <small class="text-muted">{{ folder.trip_dates }}</small>
+                        </div>
+                        <p class="article-content">{{ folder.description | safe | striptags | truncate(400) }}</p>
+                        <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}">
+                      </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+        {% for folder in folders %}
+            <div class="row_folders">
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <a href="/picture/{picture_id}">
+                    <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}"
+                         alt="Lights" style="width:100%">
+                    <div class="caption">
+                      <p>Lorem ipsum...</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+        {% for picture in pictures %}
+            <div class="row">
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <a href="/picture/{picture_id}">
+                    <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}"
+                         alt="Lights" style="width:100%">
+                    <div class="caption">
+                      <p>Lorem ipsum...</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+        {% for picture in pictures %}
+            <article class="media image-section">
+              --><!--  <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.profile_pic) }}">
+              --><!--
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="#">{{ picture.author.username }}</a>
+                  <small class="text-muted">{{ picture.date_taken.strftime('%Y-%m-%d') }}</small>
+                </div>
+                <img class="img-fluid" src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
+                <p class="article-content">{{ picture.description }} </p>
+                --><!-- {% if picture.content_type == 'plain' %}
+                <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
+                {% elif picture.content_type == 'html' %}
+                <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
+                {% elif picture.content_type == 'markdown' %}
+                <p class="article-content">{{ picture.content | markdown | striptags | truncate(400) }}</p>
+                {% endif  %} --><!--
+              </div>
+            </article>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <a href="/picture/{picture_id}">
+                    <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}"
+                         alt="Lights" style="width:100%">
+                    <div class="caption">
+                      <p>Lorem ipsum...</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+    </div>
+-->
+{% endblock content %}
+<a class="nav-item nav-link" href="{{ url_for('new_picture') }}">New Picture</a>

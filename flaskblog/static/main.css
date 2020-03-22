@@ -1,0 +1,377 @@
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 100px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+h0 {
+  display: block;
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+hh1 {
+  color: white;
+  font-size: 40px;
+  font-family: "Viner Hand ITC"
+}
+.hhh1 {
+  color: white;
+  font-size: 20px;
+  font-family: "Bradley Hand ITC"
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db; /* Färgen på knapparna, Home, about... */
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+/* Experiment */
+/* The sidebar menu */
+.sidenav {
+  width: 200px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 100px; /* Stay at the top */
+  right: 20px;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+
+/* The navigation menu links */ /*
+.sidenav a {
+  padding: 6px 8px 6px 16px;     Top, Right, Buttom, Left
+  text-decoration: none;
+  font-size: 20px;
+  color: #4d4d4d;
+  display: block;
+}
+*/
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-right: 50px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.add_button {
+  width: 170px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 100px; /* Stay at the top */
+  right: 50px;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  background: #ffffff;
+  padding: 20px 0px;
+  border: 3px dashed #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.header1 {
+  text-align: center;
+  color: black;
+  font-size: 20px;
+}
+.header2 {
+  text-align: center;
+  color: black;
+  font-size: 50px;
+}
+
+/* Slut på experiment */
+
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+
+.image-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-img-1 {
+  width: 400px;
+  margin-right: 16px;
+}
+
+.img-fluid {
+  max-width: 100% \9;
+  height: auto;
+  display:block;
+  }
+
+
+/* Experiment */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+/*  */
+/* Create four equal columns that sits next to each other */
+.column {
+/*    flex: 25%;*/
+/*   max-width: 25%; */
+  padding: 0 4px;
+}
+
+.column img {
+  margin-bottom: 8px;
+  vertical-align: middle;
+  height: 250px; /* Höjd på bilderna */
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+/* @media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+Slut på experiment */
+
+
+/* Experiment */
+.row_folder {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+/*  */
+/* Create four equal columns that sits next to each other */
+.column_folder {
+/*    flex: 25%;*/
+/*   max-width: 25%; */
+  padding: 0 10px;
+}
+
+.column_folder img {
+  border-radius: 25px;
+  margin-top: 8px;
+  vertical-align: middle;
+  height: 250px; /* Höjd på bilderna */
+  box-shadow: 0 0 10px 0 #777;
+  width:400px;
+/*Scale down will take the necessary specified space that is 100px x 100px without stretching the image
+   object-fit:scale-up;*/
+
+}
+
+.column_folder img:hover {
+  border: 2px solid #777;
+  box-shadow: 0 0 0 0;
+}
+
+.column_folder1 {
+/*    flex: 25%;*/
+/*   max-width: 25%;*/
+  padding: 0 10px;
+}
+
+.column_folder1 img {
+  vertical-align: middle;
+  height: 250px; /* Höjd på bilderna */
+}
+
+.crop {
+  border-radius: 25px;
+  margin-top: 8px;
+/*  vertical-align: middle; */
+  box-shadow: 0 0 10px 0 #777;
+  width:400px;
+  height: 250px;
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+  max-width: 800px; /* Maximum width */
+  margin: 0 auto; /* Center it */
+}
+
+.crop img {
+ height: auto;
+ width: 400px;
+}
+
+.crop:hover {
+/*   border: 2px solid #777; */
+  box-shadow: 0 0 0 0;
+}
+/* Responsive layout - makes a two column-layout instead of four columns */
+/* @media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+...
+
+.rcorners3 {
+  border-radius: 25px;
+  background: url(paper.gif);
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}*/
+
+
+.crop .container {  /* Text över bild, i folders */
+  position: relative;
+  max-width: 800px; /* Maximum width */
+  margin: 0 auto; /* Center it */
+}
+
+.crop .content {
+  position: absolute; /* Position the background text */
+  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  width: 100%; /* Full width */
+  padding-left: 20px; /* Some padding */
+}
+
+.crop .content:hover {
+  color: #a6a6a6;
+}
+
+/*Slut på experiment */
+
+
+/* filnavigering */
+/* Style the list */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+/*   background-color: #eee;*/
+  background-color: #fafafa;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+/* slut på filnavigering */
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
