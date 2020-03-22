@@ -96,7 +96,7 @@ hh1 {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-
+/* kommentar */
 .add_button {
   width: 170px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
