@@ -46,7 +46,6 @@ hh1 {
   font-weight: 500;
 }
 
-/* Hej på dig */
 .header {
   padding: 60px;
   text-align: center;
@@ -133,6 +132,7 @@ hh1 {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  width: auto;
 }
 
 
@@ -321,7 +321,7 @@ ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
 /*   background-color: #eee;*/
-/*  background-color: #fafafa;*/
+  background-color: #fafafa;
 }
 
 /* Display list items side by side */

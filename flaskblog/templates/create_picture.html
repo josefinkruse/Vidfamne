@@ -6,42 +6,51 @@
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
             <div class="form-group">
-                {{ form.title.label(class="form-control-label") }}
-                {% if form.title.errors %}
-                    {{ form.title(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.title.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.title(class="form-control form-control-lg") }}
+                {{ form.image_file.label() }}
+                {{ form.image_file(class="form-control-file") }}
+                {% if form.image_file.errors %}
+                    {% for error in form.image_file.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.content_type.label(class="form-control-label") }}
-                {% if form.content_type.errors %}
-                    {{ form.content_type(class="form-control form-control-lg is-invalid") }}
+                {{ form.date_taken.label(class="form-control-label") }}
+                {% if form.date_taken.errors %}
+                    {{ form.date_taken(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.content_type.errors %}
+                        {% for error in form.date_taken.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.content_type(class="form-check") }}
+                    {{ form.date_taken(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.content.label(class="form-control-label") }}
-                {% if form.content.errors %}
-                    {{ form.content(class="form-control form-control-lg is-invalid", rows="10") }}
+                {{ form.place_taken.label(class="form-control-label") }}
+                {% if form.place_taken.errors %}
+                    {{ form.place_taken(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.content.errors %}
+                        {% for error in form.place_taken.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.content(class="form-control form-control-lg", rows="10") }}
+                    {{ form.place_taken(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.description.label(class="form-control-label") }}
+                {% if form.description.errors %}
+                    {{ form.description(class="form-control form-control-lg is-invalid", rows="5") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.description(class="form-control form-control-lg", rows="10") }}
                 {% endif %}
             </div>
         </fieldset>

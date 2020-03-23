@@ -40,7 +40,7 @@ def folders():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('all_pictures'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -55,14 +55,14 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('all_pictures'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('all_pictures'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -72,7 +72,7 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('start'))
 
 
 # priofile pic?
@@ -123,7 +123,7 @@ def new_folder():
         db.session.commit()
         os.mkdir(f"flaskblog/static/Trip_{folder.id}")
         flash('Your folder has been created!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('folders'))
     return render_template('create_folder.html', title='Add Folder', form=form, legend='New Folder')
 
 
@@ -153,7 +153,7 @@ def new_picture(folder_id):
         db.session.add(picture)
         db.session.commit()
         flash('Your picture has been uploaded!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('folder'))
     return render_template('create_picture.html', title='Upload Picture', form=form, legend='New Picture')
 
 
@@ -209,4 +209,4 @@ def delete_picture(picture_id):
     db.session.delete(picture)
     db.session.commit()
     flash('Your picture has been deleted!', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('folder'))

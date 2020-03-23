@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <!-- Side navigation -->
-    <a href="#">
+    <a href="/folder/{{folder.id}}/picture/new">
         <div class="add_button">
             <div class="header1">Add picture</div>
             <div class="header2">+</div>
@@ -11,10 +11,8 @@
     <!-- Page content -->
     <div class="main">
         <ul class="breadcrumb">
-          <li><a href="#">Albums</a></li>
-          <li><a href="#">{{folder.title}}</a></li>
-          <li><a href="#">Summer 15</a></li>
-          <li>Italy</li>
+          <li><a href="{{ url_for('folders') }}">Albums</a></li>
+          <li>{{folder.title}}</li>
         </ul>
         <div class="row">
             {% for picture in pictures %}
