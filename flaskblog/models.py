@@ -78,7 +78,7 @@ class Picture(db.Model):
 #    title = db.Column(db.String(100), nullable=False)
 #    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     image_file = db.Column(db.String(20), nullable=False)
-    date_taken = db.Column(db.DateTime, nullable=False) #, default=datetime.utcnow)  # Where to get the info?
+    date_taken = db.Column(db.DateTime, nullable=False, default=None) #, default=datetime.utcnow)  # Where to get the info?
 #    content = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text)
     #  place_taken_lat = db.Column(db.Float)
@@ -92,7 +92,7 @@ class Picture(db.Model):
 
 # Ändra massa!!!
     def __repr__(self):
-        return f"Post('{self.image_file}', '{self.date_taken}', '{self.description}', " \
+        return f"Picture('{self.image_file}', '{self.date_taken}', '{self.description}', " \
                f"'{self.place_taken}', '{self.user}', '{self.folder}')"
 
     # but with the serialize() allows you to get information from relationships
@@ -104,7 +104,7 @@ class Picture(db.Model):
 #            'content': self.content,
 #            'content_type': self.content_type,
             'date_taken': self.date_taken,
-            'profile_pic': self.image_file,
+            'image_file': self.image_file,
             'description': self.description,
             'place_taken': self.place_taken,
             'user': self.user_id,
