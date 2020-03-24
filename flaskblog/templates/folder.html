@@ -20,7 +20,9 @@
                 <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
               </div>
             {% endfor %}
-        </div> <!--
+        </div>
+
+
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 {% for picture in pictures %}

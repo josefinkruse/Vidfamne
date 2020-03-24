@@ -2,18 +2,22 @@
 {% block content %}
     <!-- Side navigation -->
     <div class="sidenav">
-        <h5>Our Sidebar</h5>
-        <p class='text-muted'>You can put any information here you'd like.
+        <h5>Sidebar</h5>
+        <p class='text-muted'>
           <ul class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Latest Pictures</a>
             <a href="#" class="list-group-item list-group-item-action">Add picture</a>
-            <a href="#" class="list-group-item list-group-item-action">etc</a>
+            <a href="#" class="list-group-item list-group-item-action">Add folder</a>
+
           </ul>
         </p>
     </div>
 
     <!-- Page content -->
     <div class="main">
+        <div class="content-section">
+            <h1>Welcome!</h1>
+            <h6> Welcome to the internal webpage for the association "Sällskapet medeltida skepp". This is a place where we can share and watch pictures from our trips together</h6>
+        </div>
         <div class="row">
             {% for picture in pictures %}
               <div class="column">

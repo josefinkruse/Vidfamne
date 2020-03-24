@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <!-- Side navigation -->
-    <div class="sidenav">
+      <!--<div class="sidenav">
         <h5>Our Sidebar</h5>
         <p class='text-muted'>You can put any information here you'd like.
           <ul class="list-group">
@@ -10,18 +10,23 @@
             <a href="#" class="list-group-item list-group-item-action">etc</a>
           </ul>
         </p>
-    </div>
+    </div>-->
 
     <!-- Page content -->
-    <div class="main">
+   <div class="main_wide">
+       <hh1>My pictures</hh1>
+        <h5>Here are all the pictures that you have uploaded.</h5>
         <div class="row">
             {% for picture in pictures %}
+            <a href="/picture/{picture_id}">
               <div class="column">
                 <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
+
               </div>
+            </a>
             {% endfor %}
-        </div> <!--
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        </div>
+        <!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 {% for picture in pictures %}
                     <div class="carousel-item">
@@ -31,16 +36,13 @@
                 {% endfor %}
             </div>
         </div> -->
-        {% for picture in pictures %}
+        <!--{% for picture in pictures %}
             <div class="row">
               <div class="col-md-4">
                 <div class="thumbnail">
                   <a href="/picture/{picture_id}">
                     <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}"
                          alt="Lights" style="width:100%">
-                    <div class="caption">
-                      <p>Lorem ipsum...</p>
-                    </div>
                   </a>
                 </div>
               </div>
@@ -48,34 +50,25 @@
         {% endfor %}
         {% for picture in pictures %}
             <article class="media image-section">
-              <!--  <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.profile_pic) }}">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.profile_pic) }}">
               -->
-              <div class="media-body">
+              <!--<div class="media-body">
                 <div class="article-metadata">
                   <a class="mr-2" href="#">{{ picture.author.username }}</a>
                   <small class="text-muted">{{ picture.date_taken.strftime('%Y-%m-%d') }}</small>
                 </div>
                 <img class="img-fluid" src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
                 <p class="article-content">{{ picture.description }} </p>
-                <!-- {% if picture.content_type == 'plain' %}
-                <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
-                {% elif picture.content_type == 'html' %}
-                <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
-                {% elif picture.content_type == 'markdown' %}
-                <p class="article-content">{{ picture.content | markdown | striptags | truncate(400) }}</p>
-                {% endif  %} -->
+
               </div>
             </article>
         </div>
-        <div class="row">
+         <div class="row">
               <div class="col-md-4">
                 <div class="thumbnail">
                   <a href="/picture/{picture_id}">
                     <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}"
                          alt="Lights" style="width:100%">
-                    <div class="caption">
-                      <p>Lorem ipsum...</p>
-                    </div>
                   </a>
                 </div>
               </div>
