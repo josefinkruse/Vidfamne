@@ -6,15 +6,23 @@ from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PictureForm, CommentForm, FolderForm
 from flaskblog.models import User, Picture, Comment, Folder
 from flask_login import login_user, current_user, logout_user, login_required
-
+from sqlalchemy import or_
 
 
 @app.route("/")
 @app.route("/all_pictures")
 #@login_required
 def all_pictures():
-    pictures = Picture.query.all()
-    return render_template('all_pictures.html', pictures=pictures, title='All pictures')
+    searchword= request.args.get('key', '')
+    if searchword is not '':
+        pictures = Picture.query\
+            .filter(or_(Picture.description.contains(searchword), Picture.place_taken.contains(searchword))) \
+            .all()
+        return render_template('all_pictures.html', pictures=pictures, title='All pictures', searchword=searchword)
+    else:
+        print('\n\n', 'key not found', '\n\n')
+        pictures = Picture.query.all()
+        return render_template('all_pictures.html', pictures=pictures, title='All pictures')
 
 
 @app.route("/my_pictures")
@@ -162,8 +170,8 @@ def new_picture(folder_id):
     folder = Folder.query.get_or_404(folder_id)  # ???
     form = PictureForm()
     if form.validate_on_submit():
-        image_file = save_picture(form.image_file.data)
-        picture = Picture(image_file=image_file, date_taken=form.date_taken.data, place_taken=form.place_taken.data,
+        picture_file = save_picture(form.image_file.data)
+        picture = Picture(image_file=picture_file, date_taken=form.date_taken.data, place_taken=form.place_taken.data,
                           description=form.description.data, user=current_user, folder_id=folder.id) #...id(folder?) )
         db.session.add(picture)
         db.session.commit()
