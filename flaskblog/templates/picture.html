@@ -8,18 +8,14 @@
         <small class="text-muted">{{ picture.date_posted.strftime('%Y-%m-%d') }}</small>
         {% if picture.author == current_user %}
           <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_picture', post_id=picture.id) }}">Update</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_picture', picture_id=picture.id) }}">Update</a>
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ picture.title }}</h2>
-      {% if picture.content_type == 'plain' %}
-      <p class="article-content">{{ picture.content }}</p>
-      {% elif picture.content_type == 'html' %}
-      <p class="article-content">{{ picture.content | safe }}</p>
-      {% elif picture.content_type == 'markdown' %}
-      <p class="article-content">{{ picture.content | markdown }}</p>
+      <div class="article-img-1">
+        <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
+      </div>
       {% endif  %}
     </div>
   </article>

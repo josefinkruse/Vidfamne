@@ -16,9 +16,11 @@
         </ul>
         <div class="row">
             {% for picture in pictures %}
-              <div class="column">
-                <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
-              </div>
+                <a href="/picture/{{picture.id}}">
+                  <div class="column">
+                    <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
+                  </div>
+                </a>
             {% endfor %}
         </div>
 
