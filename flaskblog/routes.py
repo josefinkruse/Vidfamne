@@ -76,7 +76,7 @@ def logout():
 
 
 # priofile pic?
-def save_picture(form_picture):
+def save_profile_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
@@ -97,7 +97,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
-            picture_file = save_picture(form.picture.data)
+            picture_file = save_profile_picture(form.picture.data)
             current_user.profile_pic = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
@@ -121,7 +121,7 @@ def new_folder():
                         trip_description=form.trip_description.data) #, user=current_user)
         db.session.add(folder)
         db.session.commit()
-        os.mkdir(f"flaskblog/static/Trip_{folder.id}")
+        os.mkdir(f"flaskblog/static/trip_{folder.id}")
         flash('Your folder has been created!', 'success')
         return redirect(url_for('folders'))
     return render_template('create_folder.html', title='Add Folder', form=form, legend='New Folder')
@@ -140,6 +140,20 @@ def folder(folder_id):
     return render_template('folder.html', title=folder.title, folder=folder, pictures=pictures)
 
 
+def save_picture(form_image_file):
+#    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_image_file.filename)
+#    picture_fn = random_hex + f_ext
+    picture_fn = f"trip_{folder.id}.{picture.id}" + f_ext
+    picture_path = os.path.join(app.root_path, 'static', f'trip_{folder.id}', picture_fn)
+
+#    output_size = (125, 125)
+    i = Image.open(form_image_file)
+#    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
 # Upload a new picture
 # Originally: "/picture/new"  ?
 @app.route("/folder/<int:folder_id>/picture/new", methods=['GET', 'POST'])
@@ -148,7 +162,8 @@ def new_picture(folder_id):
     folder = Folder.query.get_or_404(folder_id)  # ???
     form = PictureForm()
     if form.validate_on_submit():
-        picture = Picture(image_file=form.image_file.data, date_taken=form.date_taken.data, place_taken=form.place_taken.data,
+        image_file = save_picture(form.image_file.data)
+        picture = Picture(image_file=image_file, date_taken=form.date_taken.data, place_taken=form.place_taken.data,
                           description=form.description.data, user=current_user, folder_id=folder.id) #...id(folder?) )
         db.session.add(picture)
         db.session.commit()

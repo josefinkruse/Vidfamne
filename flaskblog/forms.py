@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskblog.models import User, Folder
 
@@ -60,9 +60,11 @@ class PictureForm(FlaskForm):
 #    title = StringField('Title', validators=[DataRequired()])
 #    content_type = RadioField('Content type', validators=[DataRequired()], choices=[('plain', 'Plain Text'), ('html', 'HTML'), ('markdown', 'Markdown')])
     image_file = FileField('Add an image file', validators=[FileAllowed(['jpg', 'png'])])
-    date_taken = TextAreaField('Date the photo was taken (YYYY-MM-DD)')
+#    date_taken = TextAreaField('Date the photo was taken (YYYY-MM-DD)')
+    date_taken = DateField('Date the photo was taken')
     place_taken = TextAreaField('Place')
     description = TextAreaField('Description') # , validators=[DataRequired()])
+#    image_folder = RadioField('Folder', validators=[DataRequired()], choices=[('plain', 'Plain Text'), ('html', 'HTML'), ('markdown', 'Markdown')])
     submit = SubmitField('Upload')
 
 
