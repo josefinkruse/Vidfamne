@@ -227,22 +227,12 @@ def update_picture(picture_id):
 @login_required
 def delete_picture(picture_id):
     picture = Picture.query.get_or_404(picture_id)
+    folder_id = int(picture.folder_id)
+#    folder = Folder.query.get_or_404(folder_id)
     if picture.author != current_user:
         abort(403)
     db.session.delete(picture)
     db.session.commit()
     flash('Your picture has been deleted!', 'success')
-    return redirect(url_for('folder', folder_id=folder.id))
+    return redirect(url_for('folder', folder_id=folder_id))
 
-# Delete a comment
-@app.route("/picture/<int:picture_id>/delete_comment/<int:comment_id>", methods=['POST'])
-@login_required
-def delete_comment(comment_id, picture_id):
-    comment = Comment.query.get_or_404(comment_id)
-    picture = Picture.query.get_or_404(picture_id)
-    if comment.user != current_user:
-        abort(403)
-    db.session.delete(comment)
-    db.session.commit()
-    flash('Your comment has been deleted!', 'success')
-    return redirect(url_for('picture', picture_id=picture.id))
