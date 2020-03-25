@@ -198,6 +198,7 @@ def picture(picture_id):         # , folder_id)???
     comments = Comment.query.filter(Picture.id == picture.id).order_by(Comment.date_posted.desc()).all()
     return render_template('picture.html', title=f'picture-{picture.image_file}', picture=picture, form=form, comments=comments)
 
+
 # Update a picture
 @app.route("/picture/<int:picture_id>/update", methods=['GET', 'POST'])
 @login_required
