@@ -225,24 +225,11 @@ def update_picture(picture_id):
 # Delete a picture
 @app.route("/picture/<int:picture_id>/delete", methods=['POST'])
 @login_required
-def delete_picture(picture_id):
+def delete_picture(picture_id, folder_id):
     picture = Picture.query.get_or_404(picture_id)
     if picture.author != current_user:
         abort(403)
     db.session.delete(picture)
     db.session.commit()
     flash('Your picture has been deleted!', 'success')
-    return redirect(url_for('folder', folder_id=folder.id))
-
-# Delete a comment
-@app.route("/picture/<int:picture_id>/delete_comment/<int:comment_id>", methods=['POST'])
-@login_required
-def delete_comment(comment_id, picture_id):
-    comment = Comment.query.get_or_404(comment_id)
-    picture = Picture.query.get_or_404(picture_id)
-    if comment.user != current_user:
-        abort(403)
-    db.session.delete(comment)
-    db.session.commit()
-    flash('Your comment has been deleted!', 'success')
-    return redirect(url_for('picture', picture_id=picture.id))
+    return redirect(url_for('folder', folder_id=folder_id))

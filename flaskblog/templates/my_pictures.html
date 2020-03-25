@@ -13,9 +13,11 @@
     </div>-->
 
     <!-- Page content -->
-   <div class="main_wide">
-       <hh2>My pictures</hh2>
-        <h5>Here are all the pictures that you have uploaded.</h5>
+   <div class="main">
+       <div class="content-section">
+           <hh2>My pictures</hh2>
+           <h5>Here are all the pictures that you have uploaded.</h5>
+       </div>
         <div class="row">
             {% for picture in pictures %}
             <a href="/picture/{{picture.id}}">
