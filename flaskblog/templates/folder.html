@@ -1,15 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
     <!-- Side navigation -->
-    <a href="/folder/{{folder.id}}/picture/new">
-        <div class="add_button">
-            <div class="header1">Add picture</div>
-            <div class="header2">+</div>
-        </div>
-    </a>
+
 
     <!-- Page content -->
     <div class="main">
+        <a href="/folder/{{folder.id}}/picture/new">
+            <div class="add_button">
+                <div class="header1">Add picture</div>
+                <div class="header2">+</div>
+            </div>
+        </a>
         <ul class="breadcrumb">
           <li><a href="{{ url_for('folders') }}">Albums</a></li>
           <li>{{folder.title}}</li>

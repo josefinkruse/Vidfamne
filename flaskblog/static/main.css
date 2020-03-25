@@ -66,6 +66,7 @@ hhh1 {
   border-radius: 3px;
   margin-bottom: 20px;
 }
+
 /*end of sidebar*/
 /**/
 
@@ -106,6 +107,7 @@ hhh1 {
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 100px; /* Stay at the top */
+  /*y-index: 1;*/
   right: 50px;
   overflow-x: hidden; /* Disable horizontal scroll */
   background: #ffffff;
