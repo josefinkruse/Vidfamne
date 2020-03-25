@@ -7,20 +7,26 @@ body {
 /*
 /* Fonts */
 
-hh1 {
+hh1w {
   color: white;
   font-size: 40px;
   font-family: "Viner Hand ITC"
 }
-hh2 {
+hh1 {
   color: black;
   font-size: 40px;
   font-family: "Viner Hand ITC"
 }
-hhh1 {
+hh {
   color: white;
   font-size: 20px;
   font-family: "Bradley Hand ITC"
+}
+
+hh6 {
+  color: black;
+  font-size: 20px;
+  font-family: "Viner Hand ITC"
 }
 
 .hej{

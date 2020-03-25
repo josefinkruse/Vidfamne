@@ -22,7 +22,7 @@
       {% if picture.description %}
         <p class="article-content">{{ picture.description }}</p>
       {% endif  %}
-</div>
+    </div>
   </article>
   <div class="content-section">
     <h4>Comments</h4>
@@ -102,7 +102,7 @@
     </div>
   </div>
 <!-- Modal for comments -->
- <div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -113,7 +113,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form action="{{ url_for('delete_comment', picture_id=picture.id, comment_id=comment_id) }}" method="POST">
+          <form action="{{ url_for('delete_comment', picture_id=picture.id, comment_id=comment.id) }}" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </div>
