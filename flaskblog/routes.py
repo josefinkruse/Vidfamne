@@ -234,7 +234,7 @@ def delete_picture(picture_id):
     return redirect(url_for('folder', folder_id=folder.id))
 
 # Delete a comment
-@app.route("/picture/<int:picture_id>/delete_comment", methods=['POST'])
+@app.route("/picture/<int:picture_id>/delete_comment/<int:comment_id>", methods=['POST'])
 @login_required
 def delete_comment(comment_id, picture_id):
     comment = Comment.query.get_or_404(comment_id)

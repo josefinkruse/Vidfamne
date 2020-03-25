@@ -69,7 +69,7 @@
                 <div class="col-6" style="text-align: right">{{ comment.date_posted.strftime('%Y-%m-%d %H:%M') }}</div>
                 {% if comment.user == current_user %}
                   <div>
-                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" action={{comment_id=comment.id}}
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
                             data-target="#deleteCommentModal">Delete comment</button>
                   </div>
                 {% endif %}
