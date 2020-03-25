@@ -6,6 +6,9 @@
       <div class="article-metadata">
         <a class="mr-2" href="#">{{ picture.author.username }}</a>
         <small class="text-muted">{{ picture.date_taken.strftime('%Y-%m-%d') }}</small>
+        {% if picture.place_taken %}
+          <p class="article-content">{{ picture.place_taken }}</p>
+        {% endif %}
         {% if picture.author == current_user %}
           <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_picture', picture_id=picture.id) }}">Edit</a>
@@ -16,7 +19,10 @@
       <div class="article-img-1">
         <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
       </div>
-    </div>
+      {% if picture.description %}
+        <p class="article-content">{{ picture.description }}</p>
+      {% endif  %}
+</div>
   </article>
   <div class="content-section">
     <h4>Comments</h4>
@@ -61,6 +67,11 @@
               <div class="row">
                 <div class="col-6"><b>{{ comment.user.username }}</b></div>
                 <div class="col-6" style="text-align: right">{{ comment.date_posted.strftime('%Y-%m-%d %H:%M') }}</div>
+                {% if comment.user == current_user %}
+                  <div>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteCommentModal">Delete comment</button>
+                  </div>
+                {% endif %}
               </div>
               <div class="row">
                 <div class="col-sm"><p class="text-justify">{{ comment.content }}</p></div>
@@ -84,6 +95,25 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <form action="{{ url_for('delete_picture', picture_id=picture.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal for comments -->
+ <div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteCommentModalLabel">Delete Comment?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_comment', picture_id=picture.id, comment_id=comment_id) }}" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </div>
