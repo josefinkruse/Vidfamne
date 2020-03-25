@@ -225,11 +225,13 @@ def update_picture(picture_id):
 # Delete a picture
 @app.route("/picture/<int:picture_id>/delete", methods=['POST'])
 @login_required
-def delete_picture(picture_id, folder_id):
+def delete_picture(picture_id):
+    folder_id = request.args.get("folder_id", None)
     picture = Picture.query.get_or_404(picture_id)
     if picture.author != current_user:
         abort(403)
     db.session.delete(picture)
+    # Cant remove pictures with comments. Check if picture has comment, remove them first, and then remove picture
     db.session.commit()
     flash('Your picture has been deleted!', 'success')
     return redirect(url_for('folder', folder_id=folder_id))
