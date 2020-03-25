@@ -170,10 +170,13 @@ a.article-title:hover {
 }
 
 .article-img-1 {
-  width: 400px;
+  width: 1000px;
   margin-right: 16px;
 }
-
+.article-img-1 img {
+  width: 1000px;
+  margin-right: 16px;
+}
 .img-fluid {
   max-width: 100% \9;
   height: auto;

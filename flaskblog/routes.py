@@ -196,7 +196,7 @@ def picture(picture_id):         # , folder_id)???
             flash('You are not logged in. You need to be logged in to be able to comment!', 'danger')
     # loading comments in the reverse order of insertion
     comments = Comment.query.filter(Picture.id == picture.id).order_by(Comment.date_posted.desc()).all()
-    return render_template('picture.html', title=f'picture-{picture.title}', picture=picture, form=form, comments=comments)
+    return render_template('picture.html', title=f'picture-{picture.image_file}', picture=picture, form=form, comments=comments)
 
 # Update a picture
 @app.route("/picture/<int:picture_id>/update", methods=['GET', 'POST'])
@@ -214,11 +214,11 @@ def update_picture(picture_id):
         flash('Your picture has been updated!', 'success')
         return redirect(url_for('picture', picture_id=picture.id))
     elif request.method == 'GET':
-        form.title.data = picture.title
-        form.content.data = picture.content
-        form.content_type.data = picture.content_type
-    return render_template('create_picture.html', title='Update Picture',
-                           form=form, legend='Update Picture')
+        form.date_taken.data = picture.date_taken
+        form.place_taken.data = picture.place_taken
+        form.description.data = picture.description
+    return render_template('edit_picture.html', title='Edit Picture',
+                           form=form, legend='Edit Picture')
 
 
 # Delete a picture

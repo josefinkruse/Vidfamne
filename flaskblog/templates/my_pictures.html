@@ -18,7 +18,7 @@
         <h5>Here are all the pictures that you have uploaded.</h5>
         <div class="row">
             {% for picture in pictures %}
-            <a href="/picture/{picture_id}">
+            <a href="/picture/{{picture.id}}">
               <div class="column">
                 <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
 

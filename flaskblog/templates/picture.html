@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
   <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.image_file) }}">
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.profile_pic) }}">
     <div class="media-body">
       <div class="article-metadata">
         <a class="mr-2" href="#">{{ picture.author.username }}</a>
-        <small class="text-muted">{{ picture.date_posted.strftime('%Y-%m-%d') }}</small>
+        <small class="text-muted">{{ picture.date_taken.strftime('%Y-%m-%d') }}</small>
         {% if picture.author == current_user %}
           <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_picture', picture_id=picture.id) }}">Update</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_picture', picture_id=picture.id) }}">Edit</a>
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
           </div>
         {% endif %}
@@ -16,14 +16,13 @@
       <div class="article-img-1">
         <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
       </div>
-      {% endif  %}
     </div>
   </article>
   <div class="content-section">
     <h4>Comments</h4>
     {% if current_user.is_authenticated %}
     <div class="media">
-      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.image_file) }}">
+      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.profile_pic) }}">
       <div class="media-body">
         <form method="POST" action="">
           <div class="article-metadata">
@@ -55,7 +54,7 @@
     {% endif %}
     {% for comment in comments %}
       <div class="media">
-        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.image_file) }}">
+        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + picture.author.profile_pic) }}">
         <div class="media-body">
           <div class="article-metadata">
             <div class="container">
