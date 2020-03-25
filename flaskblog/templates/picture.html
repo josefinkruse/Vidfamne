@@ -22,7 +22,7 @@
       {% if picture.description %}
         <p class="article-content">{{ picture.description }}</p>
       {% endif  %}
-</div>
+    </div>
   </article>
   <div class="content-section">
     <h4>Comments</h4>
@@ -69,7 +69,8 @@
                 <div class="col-6" style="text-align: right">{{ comment.date_posted.strftime('%Y-%m-%d %H:%M') }}</div>
                 {% if comment.user == current_user %}
                   <div>
-                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteCommentModal">Delete comment</button>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" action={{comment_id=comment.id}}
+                            data-target="#deleteCommentModal">Delete comment</button>
                   </div>
                 {% endif %}
               </div>
@@ -102,7 +103,7 @@
     </div>
   </div>
 <!-- Modal for comments -->
- <div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -113,7 +114,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form action="{{ url_for('delete_comment', picture_id=picture.id, comment_id=comment_id) }}" method="POST">
+          <form action="{{ url_for('delete_comment', picture_id=picture.id, comment_id=comment.id) }}" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </div>

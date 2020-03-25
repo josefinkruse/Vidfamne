@@ -236,9 +236,9 @@ def delete_picture(picture_id):
 # Delete a comment
 @app.route("/picture/<int:picture_id>/delete_comment", methods=['POST'])
 @login_required
-def delete_comment(comment_id, picture_id ):
+def delete_comment(comment_id, picture_id):
     comment = Comment.query.get_or_404(comment_id)
-    picture = Picture.query.get_or_404( picture_id )
+    picture = Picture.query.get_or_404(picture_id)
     if comment.user != current_user:
         abort(403)
     db.session.delete(comment)
