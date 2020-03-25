@@ -142,7 +142,7 @@ def new_folder():
 @login_required
 def folder(folder_id):
     folder = Folder.query.get_or_404(folder_id)
-    pictures = Picture.query.filter(Folder.id == folder.id).order_by(Picture.id.desc()).all()
+    pictures = Picture.query.filter_by(folder_id=folder.id).order_by(Picture.id.desc()).all()
     # loading comments in the reverse order of insertion
 #    comments = Comment.query.filter(Folder.id == folder.id).order_by(Comment.date_posted.desc()).all()
     return render_template('folder.html', title=folder.title, folder=folder, pictures=pictures)
