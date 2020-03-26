@@ -71,10 +71,11 @@ class PictureForm(FlaskForm):
 # *** Add a class for creating a folder   More?
 class FolderForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    dates = StringField('Dates of the trip (YYYY-MM-DD)', validators=[DataRequired()])
+    start_date = TextAreaField( 'Date trip started (YYYY-MM-DD)', validators=[DataRequired()] )
+    end_date = TextAreaField( 'Date trip ended (YYYY-MM-DD)', validators=[DataRequired()] )
     destinations = StringField('Destinations', validators=[DataRequired()])
     description = TextAreaField('Description')
-    folder_image = FileField('Add a folder-image file', validators=[FileAllowed(['jpg', 'png'])])
+    folder_image = FileField('Add a folder image', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Create')
 
     def validate_folder_title(self, title):
