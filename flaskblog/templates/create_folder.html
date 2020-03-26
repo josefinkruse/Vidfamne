@@ -5,7 +5,7 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
-             <div class="form-group">
+            <div class="form-group">
                 {{ form.title.label(class="form-control-label") }}
                 {% if form.title.errors %}
                     {{ form.title(class="form-control form-control-lg is-invalid") }}
@@ -27,7 +27,6 @@
                     {% endfor %}
                 {% endif %}
             </div>
-
             <div action="/action_page.php">
               <label for="start_date">Date trip started:</label>
               <input type="date" id="start_date" name="start_date">
@@ -36,11 +35,10 @@
               <label for="end_date">Date trip ended:</label>
               <input type="date" id="end_date" name="end_date">
             </div>
-
             <div class="form-group">
                 {{ form.destinations.label(class="form-control-label") }}
                 {% if form.destinations.errors %}
-                    {{ form.destinationsn(class="form-control form-control-lg is-invalid") }}
+                    {{ form.destinations(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.destinations.errors %}
                             <span>{{ error }}</span>
@@ -70,4 +68,3 @@
     </form>
 </div>
 {% endblock content %}
-
