@@ -11,7 +11,7 @@ from sqlalchemy import or_
 
 @app.route("/")
 @app.route("/all_pictures")
-#@login_required
+@login_required
 def all_pictures():
     searchword= request.args.get('key', '')
     if searchword is not '':
@@ -26,7 +26,7 @@ def all_pictures():
 
 
 @app.route("/my_pictures")
-#@login_required
+@login_required
 def my_pictures():
     pictures = Picture.query.order_by(Picture.id.desc()).all()
     return render_template('my_pictures.html', pictures=pictures, title='My pictures')
@@ -39,6 +39,7 @@ def start():
 
 
 @app.route("/folders")
+@login_required
 def folders():
     folders_all = Folder.query.all()
     pictures = Picture.query.all()
@@ -182,6 +183,7 @@ def new_picture(folder_id):
 
 # Comment a picture
 @app.route("/picture/<int:picture_id>", methods=['GET', 'POST'])
+@login_required
 def picture(picture_id):         # , folder_id)???
     picture = Picture.query.get_or_404(picture_id)
     form = CommentForm()
@@ -195,7 +197,7 @@ def picture(picture_id):         # , folder_id)???
         else:
             flash('You are not logged in. You need to be logged in to be able to comment!', 'danger')
     # loading comments in the reverse order of insertion
-    comments = Comment.query.filter(Picture.id == picture.id).order_by(Comment.date_posted.desc()).all()
+    comments = Comment.query.filter_by(picture_id=picture_id).order_by(Comment.date_posted.desc()).all()
     return render_template('picture.html', title=f'picture-{picture.image_file}', picture=picture, form=form, comments=comments)
 
 
