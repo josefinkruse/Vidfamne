@@ -126,15 +126,14 @@ def account():
 def new_folder():
     form = FolderForm()
     if form.validate_on_submit():
-        folder = Folder(title=form.title.data, trip_dates=form.trip_dates.data, destinations=form.destinations.data,
-                        trip_description=form.trip_description.data) #, user=current_user)
+        folder = Folder(title=form.title.data, start_date=form.start_date.data, end_date=form.end_date.data,
+                        destinations=form.destinations.data, description=form.description.data) #, user=current_user)
         db.session.add(folder)
         db.session.commit()
         os.mkdir(f"flaskblog/static/trip_{folder.id}")
         flash('Your folder has been created!', 'success')
         return redirect(url_for('folders'))
     return render_template('create_folder.html', title='Add Folder', form=form, legend='New Folder')
-
 
 
 # Inside a folder?

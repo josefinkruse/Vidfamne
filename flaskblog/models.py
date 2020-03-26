@@ -30,20 +30,22 @@ class User(db.Model, UserMixin):
 class Folder(db.Model):
     id: int
     title: str
-    trip_dates: datetime
+    start_date: datetime
+    end_date: datetime
     destinations: str
-    trip_description: str
+    description: str
     folder_image: str
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=True, nullable=False)
-    trip_dates = db.Column(db.Text, nullable=False)
+    start_date = db.Column(db.DateTime, nullable=False, default=None)
+    end_date = db.Column(db.DateTime, nullable=False, default=None)
     destinations = db.Column(db.Text)
-    trip_description = db.Column(db.Text)  # Vill vi ha vilka som var med på resan?
+    description = db.Column(db.Text)  # Vill vi ha vilka som var med på resan?
     folder_image = db.Column(db.String(20), nullable=False, default='default.jpg')
 
     def __repr__(self):
-        return f"Folder('{self.title}', '{self.trip_dates}', '{self.destinations}', '{self.trip_description}', '{self.folder_image}')"
+        return f"Folder('{self.title}', '{self.start_date}', '{self.end_date}', '{self.destinations}', '{self.description}', '{self.folder_image}')"
 
     # but with the serialize() allows you to get information from relationships
     @property
