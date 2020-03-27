@@ -1,7 +1,10 @@
 # This file is meant to test the functionalities of the API built in this software.
 # Official documentation: https://requests.readthedocs.io/en/master/
+from datetime import datetime
+
 import requests
 import json
+from flask import url_for
 
 # definitions of host and port
 host = 'localhost'
@@ -18,11 +21,11 @@ if reply.status_code == 200:
 else:
     print('request was not successful')
     fail = True
+token_dict = json.loads(token)
 
 # step 2: getting information about the web service
-
 req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
+               'Authorization': f'Bearer {token_dict["token"]}'
                }
 reply = requests.get(f'http://{host}:{port}/api/', headers=req_headers)
 
@@ -34,19 +37,15 @@ elif reply.status_code == 403:
     print('Your credentials have expired! Get new ones!')
     fail = True
 
-# step 3: getting a list of posts
-req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
-              }
-
-reply = requests.get(f'http://{host}:{port}/api/posts', headers=req_headers)
+# step 3: getting a list of pictures
+reply = requests.get(f'http://{host}:{port}/api/pictures', headers=req_headers)
 
 print('Code:', reply.status_code)
 
 if reply.status_code == 200:
-    for post in reply.json():
-        print('Post', post['id'])
-        for key, value in post.items():
+    for picture in reply.json():
+        print('Picture', picture['id'])
+        for key, value in picture.items():
             if key == 'content':
                 print('\t', key.ljust(15), ':', value[:50].replace('\n', ''), '...')
             elif key == 'id':
@@ -62,23 +61,21 @@ elif reply.status_code == 403:
     fail = True
 
 # step 4: inserting a new picture
-req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
-              }
+picture = {'image_file': "flaskblog/static/trip_1/trip_1.12.jpg",
+       'date_taken': datetime.utcnow().strftime("%Y-%m-%d"),
+       'description': 'Description',
+       'place_taken': 'Vinga',
+       'user': 2,
+       'folder': 2}
 
-post = {'title': 'Define here the title of the student llllll',
-       'content_type': 'markdown',
-       'content': 'Define here the content you want in the picture',
-       'user': 1}
-
-reply = requests.picture(f'http://{host}:{port}/api/posts', headers=req_headers, data=json.dumps(post))
+reply = requests.post(f'http://{host}:{port}/api/pictures', headers=req_headers, data=json.dumps(picture))
 
 if reply.status_code == 201:
     print('Created with success')
-    post_received = reply.json()
-    print('Post created:')
-    print('\tid:', post_received['id'])
-    print('\ttitle:', post_received['title'])
+    picture_received = reply.json()
+    print('Picture created:')
+    print('\tid:', picture_received['id'])
+    print('\tdescription:', picture_received['description']) # ------------
 elif reply.status_code == 403:
     print('Your credentials have expired! Get new ones!')
     fail = True
@@ -88,41 +85,35 @@ else:
 
 
 # step 5: getting a specific picture
-req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
-              }
-
 reply = requests.get(f'http://{host}:{port}/api/picture/1', headers=req_headers)
 
 if reply.status_code == 200:
-    print('Post found:')
+    print('Picture found:')
     for key, value in reply.json().items():
         print('\t', key, ':', value)
 elif reply.status_code == 404:
-    print('Post not found! Try another id!')
+    print('Picture not found! Try another id!')
     fail = True
 elif reply.status_code == 403:
     print('Your credentials have expired! Get new ones!')
     fail = True
 
 # step 6: replacing a picture
-req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
-              }
+picture = {'image_file': "flaskblog/static/trip_1/trip_1.13.jpg",
+       'date_taken': datetime.utcnow().strftime("%Y-%m-%d"),
+       'description': 'Description',
+       'place_taken': 'Vinga',
+       'user': 2,
+       'folder': 2}
 
-post = {'title': 'Define here the title of the student llllll',
-       'content_type': 'markdown',
-       'content': 'Define here the content you want in the picture',
-       'user': 1}
-
-reply = requests.put(f'http://{host}:{port}/api/picture/1', headers=req_headers, data=json.dumps(post))
+reply = requests.put(f'http://{host}:{port}/api/picture/17', headers=req_headers, data=json.dumps(picture))
 
 if reply.status_code == 200:
     print('Replaced with success')
-    post_received = reply.json()
-    print('Post created:')
-    print('\tid:', post_received['id'])
-    print('\ttitle:', post_received['title'])
+    picture_received = reply.json()
+    print('Picture created:')
+    print('\tid:', picture_received['id'])
+    print('\tdescription:', picture_received['description'])
 elif reply.status_code == 403:
     print('Your credentials have expired! Get new ones!')
     fail = True
@@ -132,24 +123,22 @@ else:
     fail = True
 
 # step 7: editing a picture
-req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
-              }
+picture = {'image_file': "flaskblog/static/trip_1/trip_1.12.jpg",
+#       'date_taken': datetime.utcnow(),
+#       'description': 'Description',
+#       'place_taken': 'Vinga',
+#       'user': 2,
+#       'folder': 2
+        }
 
-post = {'title': 'Define here the title of the student llllll -- replaced',
-#        'content_type': 'markdown',
-#        'content': 'Define here the content you want in the picture',
-#        'user': 1
-       }
-
-reply = requests.patch(f'http://{host}:{port}/api/picture/1', headers=req_headers, data=json.dumps(post))
+reply = requests.put(f'http://{host}:{port}/api/picture/17', headers=req_headers, data=json.dumps(picture))
 
 if reply.status_code == 200:
     print('Updated with success')
-    post_received = reply.json()
-    print('Post created:')
-    print('\tid:', post_received['id'])
-    print('\ttitle:', post_received['title'])
+    picture_received = reply.json()
+    print('Picture created:')
+    print('\tid:', picture_received['id'])
+    print('\tdescription:', picture_received['description'])
 elif reply.status_code == 403:
     print('Your credentials have expired! Get new ones!')
     fail = True
@@ -159,18 +148,14 @@ else:
     fail = True
 
 # step 8: deleting a picture
-req_headers = {'Content-Type': 'application/json',
-               'Authorization': f'Bearer {token}'
-              }
-
-reply = requests.delete(f'http://{host}:{port}/api/picture/1', headers=req_headers)
+reply = requests.delete(f'http://{host}:{port}/api/picture/17/delete', headers=req_headers)
 
 if reply.status_code == 200:
-    print('Post deleted:')
+    print('Picture deleted:')
     for key, value in reply.json().items():
         print('\t', key, ':', value)
 elif reply.status_code == 404:
-    print('Post not found! Try another id!')
+    print('Picture not found! Try another id!')
     fail = True
 elif reply.status_code == 403:
     print('Your credentials have expired! Get new ones!')

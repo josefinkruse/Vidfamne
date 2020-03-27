@@ -42,9 +42,9 @@
                   {% if current_user.is_authenticated %}
                     <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                     <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-                    <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-light my-2 my-sm-0 hej" type="submit">Search</button>
+                    <form class="form-inline my-2 my-lg-0" action="/" method="GET">
+                      <input name= "key" class="form-control mr-sm-2" type="search" placeholder="Search" value= "{{searchword}}" aria-label="Search">
+                      <button class="btn btn-outline-light my-2 my-sm-0 " type="submit">Search</button>
                     </form>
                   {% else %}
                     <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>

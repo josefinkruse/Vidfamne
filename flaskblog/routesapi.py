@@ -23,9 +23,9 @@ def token():
 @app.route('/api/', methods=['GET'])
 def api():
 	info = dict()
-	info['message'] = 'This is the API to consume blog posts'
+	info['message'] = 'This is the API to consume blog pictures'
 	info['services'] = []
-	info['services'].append({'url': '/api/posts', 'method': 'GET', 'description': 'Gets a list of posts'})
+	info['services'].append({'url': '/api/pictures', 'method': 'GET', 'description': 'Gets a list of pictures'})
 	print(info)
 	return jsonify(info)
 
@@ -37,37 +37,41 @@ def get_users():
 	return jsonify(users)
 
 
-# Show all posts
-@app.route('/api/posts', methods=['GET'])
-def get_posts():
-	posts = Picture.query.all()
-	return jsonify(posts)
+# Show all pictures
+@app.route('/api/pictures', methods=['GET'])
+def get_pictures():
+	pictures = Picture.query.all()
+	return jsonify(pictures)
 
 
 # Show a picture
 @app.route('/api/picture/<int:picture_id>', methods=['GET'])
-def get_post(post_id):
-	post = db.session.query(Picture).get(post_id)
-	if post:
-		return jsonify(post), 200
+def get_picture(picture_id):
+	picture = db.session.query(Picture).get(picture_id)
+	if picture:
+		return jsonify(picture), 200
 	else:
 		return abort(404) # 404 is not found
 
 
 # Create picture
-@app.route('/api/posts', methods=['POST'])
-def create_post():
+@app.route('/api/pictures', methods=['POST'])
+def create_picture():
 	data = request.json
-	if 'title' in data and 'content_type' in data and 'content' in data and 'user' in data:
-		post = Picture(title=data['title'],
-					   content_type=data['content_type'],
-					   content=data['content'],
-					   user_id=int(data['user']))
-		db.session.add(post)
+	if 'image_file' in data and 'date_taken' in data and 'description' in data and 'place_taken' in data and 'user' in data and 'folder' in data:
+		picture = Picture(image_file=data['image_file'],
+					   date_taken=datetime.datetime.strptime(data['date_taken'], "%Y-%m-%d"),
+					   description=data['description'],
+					   place_taken=data['place_taken'],
+					   user_id=int(data['user']),
+						folder_id= int(data['folder']))
+
+		db.session.add(picture)
+
 		try:
 			db.session.commit() # how would you improve this code?
-			return jsonify(post), 201 # status 201 means "CREATED"
-		except:
+			return jsonify(picture), 201 # status 201 means "CREATED"
+		except Exception as e:
 			db.session.rollback()
 			abort(400)
 	else:
@@ -76,22 +80,42 @@ def create_post():
 
 # Replace picture
 @app.route('/api/picture/<int:picture_id>', methods=['PUT'])
-def replace_post(post_id):
-	post = db.session.query(Picture).get(post_id)
-	if post:
+def replace_picture(picture_id):
+	picture = db.session.query(Picture).get(picture_id)
+	if picture:
 		data = request.json
-		if 'title' in data and 'content_type' in data and 'content' in data and 'user' in data:
-			post.title = data['title']
-			post.content_type = data['content_type']
-			post.content = data['content']
-			post.user_id = data['user']
-			try:
-				db.session.commit()
-				return jsonify(post), 200
-			except:
-				db.sesion.rollback()
-				abort(400)
-		else:
-			return abort(400) # bad request
+		if 'image_file' in data:
+			picture.image_file = data['image_file']
+		if 'date_taken' in data:
+			picture.date_taken = datetime.datetime.strptime(data['date_taken'], "%Y-%m-%d")
+		if 'description' in data:
+			picture.description = data['description']
+		if 'place_taken' in data:
+			picture.place_taken= data['place_taken']
+		if 'user' in data:
+			picture.user_id = data['user']
+		if 'folder' in data:
+			picture.folder_id = data['folder']
+		try:
+			db.session.commit()
+			return jsonify(picture), 200
+		except Exception as e:
+			db.session.rollback()
+			abort(400)
 	else:
 		return abort(404)  # 404 is not found
+
+
+# Delete a picture
+@app.route("/api/picture/<int:picture_id>/delete", methods=['DELETE'])
+def delete_picture_api(picture_id):
+	picture = Picture.query.get_or_404(picture_id)
+	db.session.delete(picture)
+	# Cant remove pictures with comments. Check if picture has comment, remove them first, and then remove picture
+	try:
+		db.session.commit()
+		return jsonify(picture), 200
+	except Exception as e:
+		db.session.rollback()
+		abort(400)
+

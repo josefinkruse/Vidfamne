@@ -1,3 +1,6 @@
+import os
+import secrets
+from PIL import Image
 from flask import Flask, request, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -10,7 +13,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_ECHO'] = True # option for debugging -- should be set to False for production
-
 
 def _fk_pragma_on_connect(dbapi_con, con_record):
     dbapi_con.execute('pragma foreign_keys=ON')
@@ -42,6 +44,16 @@ def before():
         print('DENIED:', request.remote_addr, request.headers)
         abort(403) # forbidden
 
+def save_picture_first(image_file, folder):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(image_file)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static', f'trip_{folder.id}', picture_fn)
+
+    i = Image.open(image_file)
+    i.save(picture_path)
+
+    return picture_fn
 
 bcrypt = Bcrypt(app)
 Markdown(app)

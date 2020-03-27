@@ -15,6 +15,7 @@ from datetime import date
 @login_required
 def all_pictures():
     searchword= request.args.get('key', '')
+    print(searchword)
     if searchword is not '':
         pictures = Picture.query\
             .filter(or_(Picture.description.contains(searchword), Picture.place_taken.contains(searchword))) \
@@ -131,7 +132,7 @@ def new_folder():
                         start_date=(form.start_date.data),
                         end_date=(form.end_date.data),
                         destinations=form.destinations.data,
-                        description=form.description.data) #, user=current_user)
+                        description=form.description.data)
         db.session.add(folder)
         db.session.commit()
         os.mkdir(f"flaskblog/static/trip_{folder.id}")
@@ -144,14 +145,11 @@ def new_folder():
 
 
 # Inside a folder?
-# *** Tillagd själv, osäker...
 @app.route("/folder/<int:folder_id>", methods=['GET', 'POST'])
 @login_required
 def folder(folder_id):
     folder = Folder.query.get_or_404(folder_id)
     pictures = Picture.query.filter_by(folder_id=folder.id).order_by(Picture.id.desc()).all()
-    # loading comments in the reverse order of insertion
-#    comments = Comment.query.filter(Folder.id == folder.id).order_by(Comment.date_posted.desc()).all()
     return render_template('folder.html', title=folder.title, folder=folder, pictures=pictures)
 
 
@@ -159,12 +157,9 @@ def save_picture(form_image_file, folder):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_image_file.filename)
     picture_fn = random_hex + f_ext
-#    picture_fn = f"trip_{folder.id}.{picture.id}" + f_ext
     picture_path = os.path.join(app.root_path, 'static', f'trip_{folder.id}', picture_fn)
 
-#    output_size = (125, 125)
     i = Image.open(form_image_file)
-#    i.thumbnail(output_size)
     i.save(picture_path)
 
     return picture_fn
