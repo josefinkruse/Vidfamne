@@ -42,7 +42,7 @@ def start():
 @login_required
 def folders():
     folders_all = Folder.query.all()
-    pictures = Picture.query.all()
+    pictures = Picture.query.all()   # Do we need this??
     return render_template('folders.html', folders=folders_all, pictures=pictures, title='Albums')
 
 
@@ -127,7 +127,7 @@ def new_folder():
     form = FolderForm()
     if form.validate_on_submit():
         folder = Folder(title=form.title.data, start_date=form.start_date.data, end_date=form.end_date.data,
-                        destinations=form.destinations.data, description=form.description.data) #, user=current_user)
+                        destinations=form.destinations.data, description=form.description.data, folder_image=form.folder_image.data) #, user=current_user)
         db.session.add(folder)
         db.session.commit()
         os.mkdir(f"flaskblog/static/trip_{folder.id}")

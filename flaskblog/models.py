@@ -53,9 +53,10 @@ class Folder(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'trip_dates': self.trip_dates,
+            'start_date': self.start_date,
+            'end_date': self.end_date,
             'destinations': self.destinations,
-            'trip_description': self.trip_description,
+            'description': self.description,
             'folder_image': self.folder_image
         }
 
@@ -111,8 +112,8 @@ class Picture(db.Model):
             'place_taken': self.place_taken,
             'user': self.user_id,
             'username': self.user.username,
-            'folder': self.folder_id,
-            'trip': self.folder.title
+            'folder_id': self.folder_id,    #changed...
+            'folder_title': self.folder.title    #changed...
         }
 
 
