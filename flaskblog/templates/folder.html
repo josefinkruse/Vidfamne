@@ -62,13 +62,6 @@
                 </div>
                 <img class="img-fluid" src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
                 <p class="article-content">{{ picture.description }} </p>
-                <!-- {% if picture.content_type == 'plain' %}
-                <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
-                {% elif picture.content_type == 'html' %}
-                <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
-                {% elif picture.content_type == 'markdown' %}
-                <p class="article-content">{{ picture.content | markdown | striptags | truncate(400) }}</p>
-                {% endif  %} -->
               </div>
             </article>
             <div class="row">

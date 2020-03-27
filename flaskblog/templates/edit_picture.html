@@ -5,34 +5,10 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
-            <!--
-            <form action="/action_page.php">
-              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-              <label for="vehicle1"> I have a bike</label><br>
-              <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-              <label for="vehicle2"> I have a car</label><br>
-              <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-              <label for="vehicle3"> I have a boat</label><br><br>
-              <input type="submit" value="Submit">
-            </form>
-            -->
             <div action="/action_page.php">
               <label for="date_taken">Date taken:</label>
               <input type="date" id="date_taken" name="date_taken" value="{{form.date_taken._value()}}">
             </div>
-            <!-- <div class="form-group">
-                {{ form.date_taken.label(class="form-control-label") }}
-                {% if form.date_taken.errors %}
-                    {{ form.date_taken(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.date_taken.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.date_taken(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>-->
             <div class="form-group">
                 {{ form.place_taken.label(class="form-control-label") }}
                 {% if form.place_taken.errors %}

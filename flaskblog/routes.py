@@ -84,7 +84,7 @@ def logout():
     return redirect(url_for('start'))
 
 
-# priofile pic?
+# profile pic?
 def save_profile_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
@@ -127,7 +127,7 @@ def new_folder():
     form = FolderForm()
     if form.validate_on_submit():
         folder = Folder(title=form.title.data, start_date=form.start_date.data, end_date=form.end_date.data, destinations=form.destinations.data,
-                        description=form.description.data) #, user=current_user)
+                        description=form.description.data, folder_image=form.folder.image.data) #, user= #folder_image?
         db.session.add(folder)
         db.session.commit()
         os.mkdir(f"flaskblog/static/trip_{folder.id}")

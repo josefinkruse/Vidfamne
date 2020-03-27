@@ -31,7 +31,7 @@ class Folder(db.Model):
     id: int
     title: str
     start_date: datetime
-    end_date= datetime
+    end_date: datetime
     destinations: str
     description: str
     folder_image: str
@@ -53,9 +53,10 @@ class Folder(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'trip_dates': self.trip_dates,
+            'start_date': self.start_date,
+            'end_date': self.end.date,
             'destinations': self.destinations,
-            'trip_description': self.trip_description,
+            'description': self.description,
             'folder_image': self.folder_image
         }
 

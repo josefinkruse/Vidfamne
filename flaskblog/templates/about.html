@@ -10,13 +10,6 @@
             </div>
             <img class="article-img-1" src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
             <h2><a class="article-content" href="{{ url_for('picture', picture_id=picture.id) }}">{{ picture.description }}</a></h2>
-            <!-- {% if picture.content_type == 'plain' %}
-            <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
-            {% elif picture.content_type == 'html' %}
-            <p class="article-content">{{ picture.content | safe | striptags | truncate(400) }}</p>
-            {% elif picture.content_type == 'markdown' %}
-            <p class="article-content">{{ picture.content | markdown | striptags | truncate(400) }}</p>
-            {% endif  %} -->
           </div>
         </article>
     {% endfor %}
