@@ -15,8 +15,8 @@ except:
 
 db.create_all()
 
-#hashed_password = bcrypt.generate_password_hash('testing').decode('utf-8')
-default_user = User(username='Default user', email='default@test.com', password='testing')
+hashed_password = bcrypt.generate_password_hash('testing').decode('utf-8')
+default_user = User(username='Default user', email='default@test.com', password=hashed_password)
 db.session.add(default_user)
 
 first_folder = Folder(title='First folder', start_date=date.fromisoformat('2019-07-11'), end_date=date.fromisoformat('2019-07-18'),
