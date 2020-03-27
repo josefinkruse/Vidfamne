@@ -1,7 +1,7 @@
 import os
 from flaskblog import db, bcrypt
 from flaskblog.models import User, Folder, Picture, Comment
-from datetime import datetime
+from datetime import datetime, date
 
 # create new trip
 # os.mkdir("flaskblog/static/<int:folder_title>")
@@ -15,16 +15,16 @@ except:
 
 db.create_all()
 
-hashed_password = bcrypt.generate_password_hash('testing').decode('utf-8')
-default_user = User(username='Default user', email='default@test.com', password=hashed_password)
+#hashed_password = bcrypt.generate_password_hash('testing').decode('utf-8')
+default_user = User(username='Default user', email='default@test.com', password='testing')
 db.session.add(default_user)
 
-first_folder = Folder(title='First folder', start_date='2019-07-11 00:00:00.000000', end_date='2019-07-18 00:00:00.000000', destinations='Marstrand',
-                      description='Best trip ever!', folder_image='trip_1.1.jpg')
+first_folder = Folder(title='First folder', start_date=date.fromisoformat('2019-07-11'), end_date=date.fromisoformat('2019-07-18'),
+                      destinations='Marstrand', description='Best trip ever!', folder_image='trip_1.1.jpg')
 db.session.add(first_folder)
 
-second_folder = Folder(title='Second folder', start_date='2019-08-11 00:00:00.000000', end_date='2019-08-18 00:00:00.000000', destinations='Vinga',
-                      description='Second best trip ever!', folder_image='trip_2.1.jpg')
+second_folder = Folder(title='Second folder', start_date=date.fromisoformat('2019-08-11'), end_date=date.fromisoformat('2019-08-18'),
+                       destinations='Vinga', description='Second best trip ever!', folder_image='trip_2.1.jpg')
 db.session.add(second_folder)
 
 for i in range(11):
