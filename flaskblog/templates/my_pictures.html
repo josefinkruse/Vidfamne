@@ -15,15 +15,14 @@
     <!-- Page content -->
    <div class="main">
        <div class="content-section">
-           <hh2>My pictures</hh2>
-           <h5>Here are all the pictures that you have uploaded.</h5>
+           <hh1>My pictures</hh1> <br>
+           <hh6>Here are all the pictures that you have uploaded.</hh6>
        </div>
         <div class="row">
             {% for picture in pictures %}
             <a href="/picture/{{picture.id}}">
               <div class="column">
                 <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
-
               </div>
             </a>
             {% endfor %}

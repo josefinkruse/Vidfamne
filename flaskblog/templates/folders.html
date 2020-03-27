@@ -11,8 +11,8 @@
     <!-- Page content -->
     <div class="main">
         <div class="content-section">
-            <h1>Albums</h1>
-            <h5>Here are all the albums. Please choose one to see the respective pictures</h5>
+            <hh1>Albums</hh1> <br>
+            <hh6>Here are all the albums. Please choose one to see the respective pictures</hh6>
         </div>
         <div class="row_folder">
             {% for folder in folders %}
@@ -21,16 +21,14 @@
                     <a href="{{ url_for('folder', folder_id=folder.id) }}">
                         <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}">
                         <div class="content">
-                          <hh6w>{{folder.title}}</hh6w>
-                          <p>{{folder.start_date}}  -  {{folder.end_date}}</p>
+                          <hh6w>{{folder.title}}</hh6w> <br>
+                          <p>{{folder.start_date}} &nbsp - &nbsp {{folder.end_date}}</p>
                         </div>
                     </a>
                 </div>
             </div>
-
             {% endfor %}
         </div>
-
     </div>
 
 {% endblock content %}

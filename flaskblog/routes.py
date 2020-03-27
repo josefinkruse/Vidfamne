@@ -29,7 +29,7 @@ def all_pictures():
 @app.route("/my_pictures")
 @login_required
 def my_pictures():
-    pictures = Picture.query.order_by(Picture.id.desc()).all()
+    pictures = Picture.query.filter_by(user_id=current_user.id).order_by(Picture.id.desc()).all()
     return render_template('my_pictures.html', pictures=pictures, title='My pictures')
 
 
