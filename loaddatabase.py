@@ -19,11 +19,11 @@ hashed_password = bcrypt.generate_password_hash('testing').decode('utf-8')
 default_user = User(username='Default user', email='default@test.com', password=hashed_password)
 db.session.add(default_user)
 
-first_folder = Folder(title='First folder', start_date=date.fromisoformat('2019-07-11'), end_date=date.fromisoformat('2019-07-18'),
+first_folder = Folder(title='Sailing week 2019', start_date=date.fromisoformat('2019-07-13'), end_date=date.fromisoformat('2019-07-21'),
                       destinations='Marstrand', description='Best trip ever!', folder_image='trip_1.1.jpg')
 db.session.add(first_folder)
 
-second_folder = Folder(title='Second folder', start_date=date.fromisoformat('2019-08-11'), end_date=date.fromisoformat('2019-08-18'),
+second_folder = Folder(title='Weekend september 2019', start_date=date.fromisoformat('2019-09-11'), end_date=date.fromisoformat('2019-09-13'),
                        destinations='Vinga', description='Second best trip ever!', folder_image='trip_2.1.jpg')
 db.session.add(second_folder)
 

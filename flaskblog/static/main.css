@@ -29,6 +29,11 @@ hh6 {
   font-family: "arial"
 }
 
+hh6w {
+  font-size: 20px;
+  font-family: "arial"
+}
+
 .hej{
   color: white
 }
@@ -177,13 +182,14 @@ a.article-title:hover {
 }
 
 .article-img-1 {
-  width: 1000px;
+  max-width: 800px;
   margin-right: 16px;
-  shrink-to-fit: no;
+  shrink-to-fit: yes;
 }
 .article-img-1 img {
-  width: 1000px;
+  max-width: 800px;
   margin-right: 16px;
+  shrink-to-fit: yes;
 }
 .img-fluid {
   max-width: 100% \9;
@@ -241,7 +247,7 @@ Slut på experiment */
 
 .column_folder img {
   border-radius: 25px;
-  margin-top: 8px;
+  margin-bottom: 8px;
   vertical-align: middle;
   height: 250px; /* Höjd på bilderna */
   box-shadow: 0 0 10px 0 #777;
@@ -270,13 +276,12 @@ Slut på experiment */
 .crop img {
  height: auto;
  width: 400px;
-
 }
 
 
 .crop {
   border-radius: 25px;
-  margin-top: 8px;
+  margin-bottom: 18px;
 /*  vertical-align: middle; */
   box-shadow: 0 0 10px 0 #777;
   width:400px;
@@ -285,7 +290,6 @@ Slut på experiment */
   overflow: hidden;
   position: relative;
   max-width: 800px; /* Maximum width */
-  margin: 0 auto; /* Center it */
 }
 
 
@@ -317,7 +321,7 @@ Slut på experiment */
 .crop .container {  /* Text över bild, i folders */
   position: relative;
   max-width: 800px; /* Maximum width */
-  margin: 0 auto; /* Center it */
+/*  margin: 0 auto;  Center it */
 }
 
 .crop .content {
@@ -325,7 +329,7 @@ Slut på experiment */
   bottom: 0; /* At the bottom. Use top:0 to append it to the top */
   background: rgb(0, 0, 0); /* Fallback color */
   background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-  color: #f1f1f1; /* Grey text */
+  color: #f1f1f1; /* White text */
   width: 100%; /* Full width */
   padding-left: 20px; /* Some padding */
 }

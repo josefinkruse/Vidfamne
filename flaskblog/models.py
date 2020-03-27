@@ -38,8 +38,8 @@ class Folder(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=True, nullable=False)
-    start_date = db.Column(db.DateTime, nullable=False, default=None)
-    end_date = db.Column(db.DateTime, nullable=False, default=None)
+    start_date = db.Column(db.Date, nullable=False, default=None)
+    end_date = db.Column(db.Date, nullable=False, default=None)
     destinations = db.Column(db.Text)
     description = db.Column(db.Text)  # Vill vi ha vilka som var med på resan?
     folder_image = db.Column(db.String(20), nullable=False, default='default.jpg')

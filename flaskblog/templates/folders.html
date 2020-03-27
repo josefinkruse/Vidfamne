@@ -21,8 +21,8 @@
                     <a href="{{ url_for('folder', folder_id=folder.id) }}">
                         <img src="{{ url_for('static', filename=('trip_' ~ folder.id ~ '/' ~ folder.folder_image)) }}">
                         <div class="content">
-                          <h0>Heading</h0>
-                          <p>Lorem ipsum..</p>
+                          <hh6w>{{folder.title}}</hh6w>
+                          <p>{{folder.start_date}}  -  {{folder.end_date}}</p>
                         </div>
                     </a>
                 </div>
