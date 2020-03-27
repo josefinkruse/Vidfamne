@@ -5,28 +5,29 @@
     <!-- Page content -->
 
     <div class="main">
-        <div class="sidenav">
-            <h5>Sidebar</h5>
-            <p class='text-muted'>
-              <ul class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Add picture</a>
-                <a href="#" class="list-group-item list-group-item-action">Add folder</a>
-              </ul>
-            </p>
+        <div class="modal-content">
+            <div class="sidenav">
+                <h5>Sidebar</h5>
+                <p class='text-muted'>
+                  <ul class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Add picture</a>
+                    <a href="#" class="list-group-item list-group-item-action">Add folder</a>
+                  </ul>
+                </p>
+            </div>
+            <div class="content-section">
+                <hh1>Welcome!</hh1> <br>
+                <hh6> Welcome to the internal webpage for the association "Sällskapet vikingatida skepp". This is a place where we can share and see pictures from our trips together.</hh6>
+            </div>
+            <div class="row">
+                {% for picture in pictures %}
+                <a href="/picture/{{picture.id}}">
+                  <div class="column">
+                    <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
+                  </div>
+                </a>
+                {% endfor %}
+            </div>
         </div>
-        <div class="content-section">
-            <hh1>Welcome!</hh1> <br>
-            <hh6> Welcome to the internal webpage for the association "Sällskapet vikingatida skepp". This is a place where we can share and see pictures from our trips together.</hh6>
-        </div>
-        <div class="row">
-            {% for picture in pictures %}
-            <a href="/picture/{{picture.id}}">
-              <div class="column">
-                <img src="{{ url_for('static', filename=('trip_' ~ picture.folder_id ~ '/' ~ picture.image_file)) }}">
-              </div>
-            </a>
-            {% endfor %}
-        </div> <!--
-
     </div>
 {% endblock content %}

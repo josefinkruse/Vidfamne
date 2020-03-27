@@ -65,35 +65,23 @@ class Folder(db.Model):
 class Picture(db.Model):
     # but you need to identify the types of the fields
     id: int
-#    title: str
     image_file: str
     date_taken: datetime
-#    content: str
     description: str
-#    content_type: str
-    #  place_taken_lat: float
-    #  place_taken_long: float  # Kanske bara en place_taken, skrivain själv, str?
     place_taken: str
     user: User
     folder: Folder
 
     id = db.Column(db.Integer, primary_key=True)
-#    title = db.Column(db.String(100), nullable=False)
-#    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     image_file = db.Column(db.String(20), nullable=False)
     date_taken = db.Column(db.DateTime, nullable=False, default=None) #, default=datetime.utcnow)  # Where to get the info?
-#    content = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text)
-    #  place_taken_lat = db.Column(db.Float)
-    #  place_taken_long = db.Column(db.Float)
     place_taken = db.Column(db.Text)
-#    content_type = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = relationship(User)
     folder_id = db.Column(db.Integer, db.ForeignKey('folder.id'), nullable=False)
     folder = relationship(Folder)
 
-# Ändra massa!!!
     def __repr__(self):
         return f"Picture('{self.image_file}', '{self.date_taken}', '{self.description}', " \
                f"'{self.place_taken}', '{self.user}', '{self.folder}')"
@@ -103,9 +91,6 @@ class Picture(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-#            'title': self.title,
-#            'content': self.content,
-#            'content_type': self.content_type,
             'date_taken': self.date_taken,
             'image_file': self.image_file,
             'description': self.description,

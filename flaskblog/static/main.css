@@ -179,6 +179,7 @@ a.article-title:hover {
 .article-img-1 {
   width: 1000px;
   margin-right: 16px;
+  shrink-to-fit: no;
 }
 .article-img-1 img {
   width: 1000px;
