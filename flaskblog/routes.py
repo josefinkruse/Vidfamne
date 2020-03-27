@@ -7,6 +7,7 @@ from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Pict
 from flaskblog.models import User, Picture, Comment, Folder
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy import or_
+from datetime import date
 
 
 @app.route("/")
@@ -126,11 +127,17 @@ def account():
 def new_folder():
     form = FolderForm()
     if form.validate_on_submit():
-        folder = Folder(title=form.title.data, start_date=form.start_date.data, end_date=form.end_date.data,
-                        destinations=form.destinations.data, description=form.description.data, folder_image=form.folder_image.data) #, user=current_user)
+        folder = Folder(title=form.title.data,
+                        start_date=(form.start_date.data),
+                        end_date=(form.end_date.data),
+                        destinations=form.destinations.data,
+                        description=form.description.data) #, user=current_user)
         db.session.add(folder)
         db.session.commit()
         os.mkdir(f"flaskblog/static/trip_{folder.id}")
+        picture_file = save_picture(form.folder_image.data, folder)
+        folder.folder_image = picture_file
+        db.session.commit()
         flash('Your folder has been created!', 'success')
         return redirect(url_for('folders'))
     return render_template('create_folder.html', title='Add Folder', form=form, legend='New Folder')
